@@ -8,7 +8,8 @@ Rails.application.routes.draw do
 
   root to:"landing_page#index"
 
-  get "register", to:"users#login"
+  get "register", to:"users#new"
+  post "register", to:"users#create"
 
   # Defines the root path route ("/")
   # root "posts#index"

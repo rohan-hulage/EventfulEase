@@ -8,8 +8,20 @@ Rails.application.routes.draw do
 
   root to:"landing_page#index"
 
-  get "register", to:"users#new"
-  post "register", to:"users#create"
+  get 'register', to: 'users#new'
+  resources :users, except: [:new]
+
+  resources :vendors
+
+  get 'login', to: 'sessions#new'
+  post 'login', to: 'sessions#create'
+
+  get 'home', to: 'pages#home'
+
+  delete 'logout', to: 'sessions#destroy', as: :logout
+  get 'logout', to: 'sessions#destroy', as: :logout_get
+
+  get 'user_profile', to: 'pages#user_profile'
 
   # Defines the root path route ("/")
   # root "posts#index"

@@ -1,34 +1,38 @@
-<div class="container">
-  <div class="row justify-content-center">
-    <div class="col-5">
-      <div class="mt-3">
-        <h1>Register</h1>
-      </div>
-      <%= form_with model: @user, url: register_path do |form| %>
-        <div class="form-group row mt-3">
-          <%= form.label :name, "Name" %>
-          <%= form.text_field :name, class: "form-control", placeholder: "Enter your name" %>
-        </div>
-        <div class="form-group row mt-3">
-          <%= form.label :email, "Email" %>
-          <%= form.text_field :email, class: "form-control", placeholder: "Enter your email address" %>
-        </div>
-        <div class="form-group row mt-3">
-          <%= form.label :password, "Password" %>
-          <%= form.password_field :password, class: "form-control", placeholder: "Enter your password" %>
-        </div>
-        <div class="form-group row mt-3">
-          <%= form.label :password_confirmation, "Confirm password" %>
-          <%= form.password_field :password_confirmation, class: "form-control", placeholder: "Please enter the password again" %>
-        </div>
-         <div class="form-group row mt-3">
-          <%= form.label :register_as, "Register As" %>
-          <%= form.text_field :register_as, class: "form-control", placeholder: "select" %>
-        </div>
-        <div class="form-group row mt-3">
-          <%= form.submit "Register", class: "btn btn-primary" %>
-        </div>
-      <% end %>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Registration Page</title>
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+<div class="register-page">
+  <h2>Register Here</h2>
+  <%= form_with(model: User.new, model: Vendor.new, local: true) do |form| %>
+    <div>
+      <%= form.label :name %>
+      <%= form.text_field :name, required: true %>
     </div>
-  </div>
+    <div>
+      <%= form.label :email %>
+      <%= form.email_field :email, required: true %>
+    </div>
+    <div>
+      <%= form.label :password %>
+      <%= form.password_field :password, required: true %>
+    </div>
+    <div>
+      <%= form.label :password_confirmation, "Confirm Password" %>
+      <%= form.password_field :password_confirmation, required: true %>
+    </div>
+    <div>
+      <%= form.label :register_as, "Register as:" %>
+      <%= form.select :register_as, [['User', 'user'], ['Vendor', 'vendor']], { include_blank: 'Select' }, required: true %>
+    </div>
+    <%= form.submit "Register", class: "register-button" %>
+  <% end %>
 </div>
+
+</body>
+</html>

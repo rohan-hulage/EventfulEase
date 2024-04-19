@@ -1,2 +1,14 @@
 @import 'bootstrap/scss/bootstrap';
 @import 'bootstrap-icons/font/bootstrap-icons';
+@import 'bootstrap/scss/boxicons';
+@import 'bootstrap/scss/glightbox';
+@import 'bootstrap/scss/isotope-layout';
+@import 'bootstrap/scss/php-email-form';
+@import 'bootstrap/scss/purecounter';
+@import 'bootstrap/scss/swiper';
+// In app/assets/stylesheets/application.scss
+@import "registration";
+@import "login";
+@import "user_profile"
+
+

@@ -1,1 +1,185 @@
-<h1>This is Landing Page</h1>
+
+  <header id="header" class="fixed-top">
+    <div class="container d-flex align-items-center justify-content-between">
+
+      <h1 class="logo"><a href="#hero">EventfulEase</a></h1>
+      <!-- Uncomment below if you prefer to use an image logo -->
+      <!-- <a href="index.html" class="logo"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+
+      <nav id="navbar" class="navbar">
+        <ul>
+          <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
+          <li><a class="nav-link scrollto" href="#about">About</a></li>
+          <li class="dropdown"><a href="#services"><span>Services</span> <i class="bi bi-chevron-down"></i></a>
+            <ul>
+              <li><a href="family_occasions.html">Family Occasions Decoration</a></li>
+              <li><a href="family_occasions.html">Socail Events Decoration</a></li>
+              <li><a href="family_occasions.html">Destination Wedding Decoration</a></li>
+              <li><a href="pandit_ji.html">Book Pandit Ji</a></li>
+              <li><a href="available_astrologer.html">Connect With Astrologer</a></li>
+            </ul>
+          </li>
+          <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
+        <i class="bi bi-list mobile-nav-toggle"></i>
+      </nav><!-- .navbar -->
+
+    </div>
+  </header><!-- End Header -->
+
+  <!-- ======= Hero Section ======= -->
+  <section id="hero" class="d-flex align-items-center">
+
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6 pt-5 pt-lg-0 order-2 order-lg-1 d-flex flex-column justify-content-center">
+          <h1>EventfulEase
+          </h1>
+          <h1>Decorate, Devote
+          </h1>
+          <h2>We simplifies event planning by offering easy bookings for Pandit Ji, astrologers, and professional decorators for all occasions.</h2>
+          <div class="d-flex">
+            <a href="register.html" class="btn-get-started scrollto">Register</a>
+            <a href="login.html" class="btn-get-started scrollto">Login</a>
+          </div>
+        </div>
+        <div class="col-lg-6 order-1 order-lg-2 hero-img">
+          <%= image_tag("hero-img.png", :alt => "hero img") %>
+        </div>
+      </div>
+    </div>
+
+  </section><!-- End Hero -->
+
+  <main id="main">
+
+    <!-- ======= Services Section ======= -->
+    <section id="services" class="services section-bg">
+      <div class="container">
+
+        <div class="section-title">
+          <h2>Services</h2>
+        </div>
+
+        <div class="row">
+          <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
+            <div class="icon-box">
+              <div class="icon"><i class='bx bxs-balloon bx-flashing' ></i></i></div>
+              <h4><a href="family_occasions.html">Family Occasions Decoration</a></h4>
+              <p>Transform your family gatherings into memorable celebrations with bespoke decoration services</p>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-md-0">
+            <div class="icon-box">
+              <div class="icon"><i class='bx bxs-drink bx-flashing' ></i></div>
+              <h4><a href="family_occasions.html">Social Events Decoration</a></h4>
+              <p>Elevate any social event with custom, captivating decor that leaves a lasting impression</p>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-lg-0">
+            <div class="icon-box">
+              <div class="icon"><i class='bx bxs-plane bx-flashing' ></i></div>
+              <h4><a href="family_occasions.html">Destination Wedding Decoration</a></h4>
+              <p>Bring your dream wedding to life with exquisite decorations tailored to your dream destination</p>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4">
+            <div class="icon-box">
+              <div class="icon"><i class='bx bxs-book-reader bx-flashing' ></i></div>
+              <h4><a href="pandit_ji.html">Book Pandit Ji</a></h4>
+              <p>Ensure your ceremonies are imbued with tradition and spirituality by booking experienced Pandit Ji</p>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4">
+            <div class="icon-box">
+              <div class="icon"><i class='bx bxs-star bx-flashing' ></i></div>
+              <h4><a href="available_astrologer.html">Connect with Astrologer</a></h4>
+              <p>Gain insights and guidance for life's important moments through direct connections with seasoned astrologers</p>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section><!-- End Services Section -->
+
+    <!-- ======= About Section ======= -->
+  <section id="about">
+
+    <div class="about-container">
+      <h2>About</h2>
+    </div>
+   
+    <div class="about-flex">
+    <div class="about-p">
+      <p>Welcome to EventfullEase: Decorate, Devotion! </p>
+
+        <p>At EventfullEase, we believe in making your special occasions truly memorable. Whether it's a family gathering, a social event, or a destination wedding, we're here to add that extra touch of magic to your celebrations.</p>
+        
+        <p>Our platform offers a seamless experience for booking decorators, connecting with pandits for religious ceremonies, and consulting astrologers for spiritual guidance. With a diverse range of services tailored to your needs, we strive to make every event a success.</p>
+      </p>
+    </div>
+    <%= image_tag("about.png", :alt => "") %>
+  </div>
+  </section>
+
+    <!-- ======= Contact Section ======= -->
+    <section id="contact" class="contact">
+      <div class="container">
+
+        <div class="section-title">
+          <h2>Contact</h2>
+
+          <div class="col-lg-7 mt-5 mt-lg-0 d-flex align-items-stretch">
+            <form action="forms/contact.php" method="post" role="form" class="php-email-form">
+              <div class="row">
+                <div class="form-group col-md-6">
+                  <label for="name">Your Name</label>
+                  <input type="text" name="name" class="form-control" id="name" required>
+                </div>
+                <div class="form-group col-md-6 mt-3 mt-md-0">
+                  <label for="name">Your Email</label>
+                  <input type="email" class="form-control" name="email" id="email" required>
+                </div>
+              </div>
+              <div class="form-group mt-3">
+                <label for="name">Subject</label>
+                <input type="text" class="form-control" name="subject" id="subject" required>
+              </div>
+              <div class="form-group mt-3">
+                <label for="name">Message</label>
+                <textarea class="form-control" name="message" rows="10" required></textarea>
+              </div>
+              <div class="my-3">
+                <div class="loading">Loading</div>
+                <div class="error-message"></div>
+                <div class="sent-message">Your message has been sent. Thank you!</div>
+              </div>
+              <div class="text-center"><button type="submit">Send Message</button></div>
+            </form>
+          </div>
+
+        </div>
+
+      </div>
+    </section><!-- End Contact Section -->
+
+  </main><!-- End #main -->
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer">
+
+    <div class="container-footer">
+      <div class="copyright">
+        &copy; Copyright <strong><span>Akrity</span></strong>. All Rights Reserved
+      </div>
+      <div class="credits">
+        <p>Made By <a href="https://bootstrapmade.com/">Akrity</a>
+      </div>
+    </div>
+  </footer><!-- End Footer -->
+
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>

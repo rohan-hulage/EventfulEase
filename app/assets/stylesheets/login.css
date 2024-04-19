@@ -1,0 +1,72 @@
+body {
+    font-family: "Open Sans", sans-serif;
+    color: #444444;
+}
+
+.login-page{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+form {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 40px;
+    width: 500px;
+    margin: 20px;
+    align-self: center;
+    align-items: center;
+}
+
+.error { color: red; }
+
+.login-button {
+    margin-top: 20px;
+    margin-left: 140px;
+    font-family: "Raleway", sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    letter-spacing: 1px;
+    display: inline-block;
+    padding: 8px 30px;
+    border-radius: 4px;
+    transition: 0.5s;
+    color: #fff;
+    background: #16df7e;
+    box-shadow: 0 8px 28px rgba(22, 223, 126, 0.45);
+    width: max-content;
+
+}
+
+.log-button:hover {
+    background: #206bfb;
+    box-shadow: 0 8px 28px rgba(32, 107, 251, 0.45);
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 3px;
+    border: 1px solid #ccc;
+}
+
+select {
+    -webkit-appearance: none; /* Remove default arrow for Chrome/Safari */
+    -moz-appearance: none; /* Remove default arrow for Firefox */
+    appearance: none; /* Remove default arrow for other browsers */
+    padding-right: 30px;
+    width: 300px;
+}    
+
+/* Style the arrow for Firefox */
+select::-ms-expand {
+    display: none;
+}

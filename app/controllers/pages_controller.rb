@@ -6,4 +6,8 @@ class PagesController < ApplicationController
     def user_profile
 
     end
+
+    def vendor_profile
+
+    end
   end

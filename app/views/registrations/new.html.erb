@@ -9,7 +9,8 @@
 <body>
 <div class="register-page">
   <h2>Register Here</h2>
-  <%= form_with(model: User.new, model: Vendor.new, local: true) do |form| %>
+  <%= form_with(model: Registration.new, local: true) do |form| %>
+
     <div>
       <%= form.label :name %>
       <%= form.text_field :name, required: true %>

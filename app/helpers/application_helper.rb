@@ -1,11 +1,11 @@
 module ApplicationHelper
 
     def current_user
-      @current_user ||= User.find(session[:user_id]) if session[:user_id]
+      @current_user ||= Registration.find(session[:user_email]) if session[:user_email]
     end
 
     def current_vendor
-        @current_vendor ||= User.find(session[:vendor_id]) if session[:vendor_id]
+        @current_vendor ||= Registration.find(session[:vendor_email]) if session[:vendor_email]
     end
 
     def logged_in?

@@ -16,7 +16,7 @@ module EventfulEase
     # Common ones are `templates`, `generators`, or `middleware`, for example.
     config.autoload_paths += %W(#{config.root}/lib)
     config.assets.enabled = true
-    config.assets.paths << Rails.root.join('vendor')
+
 
 
 

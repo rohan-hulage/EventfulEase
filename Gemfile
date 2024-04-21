@@ -49,7 +49,9 @@ gem "bootsnap", require: false
 
 gem "cssbundling-rails"
 
-gem 'devise'
+
+gem 'activerecord-session_store'
+
 
 
 group :development, :test do

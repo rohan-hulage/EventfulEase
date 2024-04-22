@@ -12,7 +12,7 @@ class SessionsController < ApplicationController
       session[:account_email] = account.email
       session[:account_role] = account.register_as
 
-      # Redirect based on the 'register_as' attribute
+
       if account.register_as == 'user'
         redirect_to home_path
       elsif account.register_as == 'vendor'
@@ -22,7 +22,6 @@ class SessionsController < ApplicationController
         render :new
       end
     else
-
       render :new
     end
   end

@@ -1,20 +1,25 @@
 class PagesController < ApplicationController
+  before_action :require_login, only: :home
 
-    def index
+  def index
 
-    end
+  end
 
-    def home
+  def home
 
-    end
+  end
 
-    def user_profile
+  def user_profile
 
-    end
+  end
 
-    def vendor_profile
+  def vendor_profile
 
-    end
+  end
+
+  def family_occasions
+    @decorators = Registration.where(vendor_type: 'decorator').pluck(:name).uniq
+  end
 
 
   end

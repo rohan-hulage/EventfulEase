@@ -9,6 +9,10 @@
   <meta content="" name="description">
   <meta content="" name="keywords">
 
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+ 
+  <%= csrf_meta_tags %>
+
   <!-- Favicons -->
   
 
@@ -88,10 +92,11 @@
           <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
             <div class="icon-box">
               <div class="icon"><i class='bx bxs-balloon bx-flashing' ></i></i></div>
-              <h4><a href="family_occasions.html">Family Occasions Decoration</a></h4>
+              <h4><a href="<%= family_occasions_path %>">Family Occasions Decoration</a></h4>
               <p>Transform your family gatherings into memorable celebrations with bespoke decoration services</p>
             </div>
           </div>
+
 
           <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-md-0">
             <div class="icon-box">

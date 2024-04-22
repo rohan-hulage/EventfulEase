@@ -9,4 +9,11 @@ class ApplicationController < ActionController::Base
       nil
     end
   end
+
+  def require_login
+    unless current_account
+      flash[:error] = "You must be logged in to access this section"
+      redirect_to login_path
+    end
+  end
 end

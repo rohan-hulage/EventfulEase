@@ -54,6 +54,8 @@
         passwordStrength.style.color = color;
       });
     });
+
+    
   </script>
 
 <body>
@@ -79,11 +81,39 @@
     </div>
     <div>
       <%= form.label :register_as, "Register as:" %>
-      <%= form.select :register_as, [['User', 'user'], ['Vendor', 'vendor']], { include_blank: 'Select' }, required: true %>
+      <%= form.select :register_as, [['User', 'user'], ['Vendor', 'vendor']], { include_blank: 'Select' }, required: true, id: "register_as" %>
     </div>
+
+    <div id="vendor_fields" style="display: none;">
+      <div>
+        <%= form.label :vendor_type, "Vendor Type" %>
+        <%= form.select :vendor_type, [['Decorator', 'decorator'], ['Pandit Ji', 'pandit'], ['Astrologer', 'astrologer']], { include_blank: 'Select' }, required: true %>
+      </div>
+      <div>
+        <%= form.label :expertise, "Expertise" %>
+        <%= form.text_field :expertise %>
+      </div>
+    </div>
+
     <%= form.submit "Register", class: "register-button" %>
   <% end %>
 </div>
+
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const registerAsField = document.getElementById('register_as');
+    const vendorFields = document.getElementById('vendor_fields');
+
+    registerAsField.addEventListener('change', function() {
+      if (registerAsField.value === 'vendor') {
+        vendorFields.style.display = 'block';
+      } else {
+        vendorFields.style.display = 'none';
+      }
+    });
+  });
+</script>
 
 
 

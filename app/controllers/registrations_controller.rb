@@ -13,7 +13,7 @@ class RegistrationsController < ApplicationController
     @registration = Registration.new(registration_params)
     if @registration.save
       if @registration.register_as == 'vendor'
-        redirect_to vendor_specific_path, notice: 'Registered as vendor.'
+        redirect_to root_url, notice: 'Registered as vendor.'
       else
         redirect_to root_url, notice: 'Registered as user.'
       end
@@ -29,17 +29,6 @@ class RegistrationsController < ApplicationController
   end
 
   def registration_params
-    params.require(:registration).permit(:name, :email, :password, :password_confirmation, :register_as)
+     params.require(:registration).permit(:name, :email, :password, :password_confirmation, :register_as, :vendor_type, :expertise)
   end
-
-  # def redirect_based_on_registration_type
-  #   case @registration.register_as
-  #   when 'user'
-  #     redirect_to root_url
-  #   when 'vendor'
-  #     redirect_to root_url
-  #   else
-  #     # Handle other registration types if needed
-  #   end
-  # end
 end

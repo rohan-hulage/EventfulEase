@@ -484,31 +484,52 @@ h6 {
 # Footer
 --------------------------------------------------------------*/
 #footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
   background-color: #f3f4f6;
   color: #5f687b;
   font-size: 14px;
+  text-align: center;
+  z-index: 1000; /* Keeps footer above other content */
 }
 
 #footer .footer-bottom {
   border-top: 1px solid #d9dce2;
-  z-index: 2;
-  padding-top: 40px;
-  padding-bottom: 40px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  text-align: center; 
 }
 
-.container-footer{
+.container-footer {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  padding: 40px;
+  flex-wrap: wrap; 
 }
 
 @media (max-width: 992px) {
-
-  #footer .copyright,
-  #footer .credits {
-    float: none;
-    -moz-text-align-last: center;
-    text-align-last: center;
+  .container-footer {
+    flex-direction: column; /* Stacks the footer content vertically on smaller screens */
   }
+}
+
+#footer .footer-links {
+  margin-bottom: 20px; /* Adds some space between links and the text below them on small screens */
+}
+
+#footer .social-links a {
+  margin: 0 10px; /* Adds horizontal spacing between social icons */
+  color: #5f687b; /* Ensures the color matches the footer text */
+}
+
+#footer .social-links a:hover {
+  color: #14c871; /* Changes color on hover for better visibility */
+}
+
+#footer .copyright,
+#footer .credits {
+  text-align: center; /* Ensures text alignment is consistent on all screens */
+  margin-top: 10px; /* Adds top margin for better spacing when stacked */
 }

@@ -1,4 +1,9 @@
 class PagesController < ApplicationController
+
+    def index
+
+    end
+
     def home
 
     end
@@ -10,4 +15,6 @@ class PagesController < ApplicationController
     def vendor_profile
 
     end
+
+
   end

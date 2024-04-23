@@ -25,7 +25,11 @@ Rails.application.routes.draw do
 
   get 'family_occasions', to: 'pages#family_occasions'
 
+
+
   get '/payments', to: 'pages#payment', as: 'payment'
+  post '/payments', to: 'pages#make_payment', as: 'make_payment'
+
 
 
   # Defines the root path route ("/")

@@ -57,7 +57,7 @@
             <div class="row parent-parent">
                 <div class="after-click" style="display:none;">     
                     <p id="payment_status" >Payment is confirmed</p>
-                    <a id="bookingList"  style="display:none;">Booking List</a>
+                    <a id="bookingList" href="user_profile?themeName=<%= params[:themeName] %>&decoratorName=<%= params[:decoratorName] %>&price=<%= params[:price] %>" style="display:none;">Booking List</a>
                 </div>
             </div>   
     </div>
@@ -92,10 +92,6 @@
       document.querySelector(".after-click").style.display = "block";
       document.getElementById("bookingList").style.display = "block";
       document.getElementById("payment_status").innerText = "Payment is confirmed";
-    });
-
-    document.getElementById("bookingList").addEventListener("click", function() {
-      window.location.href = "booking_list.html";
     });
   </script>
 </body>

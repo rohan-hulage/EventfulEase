@@ -21,5 +21,12 @@ class PagesController < ApplicationController
     @decorators = Registration.where(vendor_type: 'decorator').pluck(:name).uniq
   end
 
+  def payment
+    @theme_name = params[:theme_name]
+    @decorator_name = params[:decorator_name]
+    @price = params[:price]
+    @custom_request = params[:custom_request]
+  end
+
 
   end

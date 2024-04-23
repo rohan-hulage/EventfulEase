@@ -1,39 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
-
   <title>EventfulEase</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
-
   <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
   <%= stylesheet_link_tag 'decoration', media: 'all', 'data-turbolinks-track': 'reload' %>
   <%= csrf_meta_tags %>
-
- 
 </head>
-
 <body>
-
-  <!-- ======= Header ======= -->
   <header id="header" class="fixed-top">
     <div class="container d-flex align-items-center justify-content-between">
-
       <h1 class="logo"><a href="index.html">EventfulEase</a></h1>
-      <!-- Uncomment below if you prefer to use an image logo -->
-      <!-- <a href="index.html" class="logo"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
-
       <nav id="navbar" class="navbar">
         <ul>
-          <li><a class="nav-link scrollto active" href="home.html">Home</a></li>
+          <li><a class="nav-link scrollto active" href="">Home</a></li>
           <li><a class="nav-link scrollto" href="#about">About</a></li>
           <li class="dropdown"><a href="#services"><span>Services</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
               <li><a href="family_occasions.html">Family Occasions Decoration</a></li>
-              <li><a href="family_occasions.html">Socail Events Decoration</a></li>
+              <li><a href="family_occasions.html">Social Events Decoration</a></li>
               <li><a href="family_occasions.html">Destination Wedding Decoration</a></li>
               <li><a href="pandit_ji.html">Book Pandit Ji</a></li>
               <li><a href="available_astrologer.html">Connect With Astrologer</a></li>>
@@ -41,129 +29,128 @@
           </li>
           <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
           <li><a class="nav-link scrollto" href="user_profile">Profile</a></li>
-        <i class="bi bi-list mobile-nav-toggle"></i>
+          <i class="bi bi-list mobile-nav-toggle"></i>
+        </ul>
       </nav><!-- .navbar -->
-
     </div>
-  </header><!-- End Header -->
-
-    <!-- ======= Services Section ======= -->
-    <section id="services" class="services section-bg">
-      <div class="container">
-
-        <div class="section-title">
-          <h2>Choose your Theme and Customize as you wish</h2>
-        </div>
-
-        <div class="row">
+  </header>
+  <section id="services" class="services section-bg">
+    <div class="container">
+      <div class="section-title">
+        <h2>Choose your Theme and Customize as you wish</h2>
+      </div>
+      <div class="row">
+        <% themes = [
+          { name: "Bollywood", image: "Bollywood_Theme.jpg", price: "$500" },
+          { name: "Jungle", image: "Jungle_Theme.jpeg", price: "$600" },
+          { name: "Under the Sea", image: "Under_The_Sea_Theme.jpeg", price: "$550" }
+        ] %>
+        <% themes.each_with_index do |theme, index| %>
           <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
             <div class="icon-box">
-              <img src="/assets/img/Bollywood_Theme.jpg" class="bollywood-theme-img" alt="">
-              <h4><a href="">Bollywood Theme</a></h4>
-              <p>Step into the enchanting world of Bollywood with our dazzling Bollywood-themed decorations!</p>
-              <a href="#about" class="btn-get-started scrollto">$500</a>
-              <div class="dropdown" style="margin-top: 20px;">
-                <button id="select-decorator" class="btn-get-started scrollto">Select Decorator</button>
+              <img src="/assets/img/<%= theme[:image] %>" class="theme-img" alt="">
+              <h4><a href="#"><%= theme[:name] %> Theme</a></h4>
+              <p>Description for <%= theme[:name] %> Theme</p>
+              <a href="#" class="btn-get-started scrollto" data-theme="<%= theme[:name] %>" data-price="<%= theme[:price] %>"><%= theme[:price] %></a>
+              <div class="dropdown dropdown-decorator" style="margin-top: 20px;">
+                <button class="btn-get-started scrollto">Select Decorator</button>
                 <div class="dropdown-content">
                   <% @decorators.each do |decorator| %>
-                    <a href="#" class="dropdown-option"><%= decorator %></a>
+                    <a href="#" class="dropdown-option" data-decorator="<%= decorator %>"
+                      data-theme="<%= theme[:name] %>" data-price="<%= theme[:price] %>">
+                      <%= decorator %>
+                    </a>
                   <% end %>
                 </div>
               </div>
             </div>
           </div>
-          
+        <% end %>
 
-          <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
-            <div class="icon-box">
-              <img src="/assets/img/Jungle_Theme.jpeg" class="bollywood-theme-img" alt="">
-              <h4><a href="">Jungle Theme</a></h4>
-              <p>Immerse your guests in the lush, wild beauty of a jungle-themed party!</p>
-              <a href="#about" class="btn-get-started scrollto">$500</a>
-                <div class="dropdown" style="margin-top: 20px;">
-                  <button id="select-decorator" class="btn-get-started scrollto">Select Decorator</button>
-                    <div class="dropdown-content">
-                      <% @decorators.each do |decorator| %>
-                        <a href="#" class="dropdown-option"><%= decorator %></a>
-                      <% end %>
-                    </div>
-                </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
-            <div class="icon-box">
-              <img src="/assets/img/Under_The_Sea_Theme.jpeg" class="bollywood-theme-img" alt="">
-              <h4><a href="">Under the Sea Theme</a></h4>
-              <p>Dive into an underwater adventure with an under the sea-themed party! </p>
-              <a href="#about" class="btn-get-started scrollto">$500</a>
-                  <div class="dropdown" style="margin-top: 20px;">
-                      <button id="select-decorator" class="btn-get-started scrollto">Select Decorator</button>
-                      <div class="dropdown-content">
-                        <% @decorators.each do |decorator| %>
-                        <a href="#" class="dropdown-option"><%= decorator %></a>
-                      <% end %>
-                      </div>
-                  </div>
-            </div>
-          </div>
-
-        </div>
         <div id="customization">
           <div class="select_theme">
             <h4><a href="">Select Theme and Add your Customization</a></h4>
-           <input type="text" placeholder="Enter details....">
-           <a href="#about" class="btn-get-started scrollto">Submit</a>
-               <div class="dropdown" style="margin-top: 20px;">
-                      <button id="select-decorator" class="btn-get-started scrollto">Select Decorator</button>
-                      <div class="dropdown-content">
-                        <% @decorators.each do |decorator| %>
-                        <a href="#" class="dropdown-option"><%= decorator %></a>
-                      <% end %>
-                      </div>
-                </div>
+            <input type="text" placeholder="Enter details....">
+            <div class="dropdown" style="margin-top: 20px;">
+              <button id="select-custom-decorator" class="btn-get-started scrollto">Select Decorator</button>
+              <div id="custom-decorator-dropdown-content" class="dropdown-content">
+                <% @decorators.each do |decorator| %>
+                  <a href="#" class="dropdown-option" data-decorator="<%= decorator %>">
+                    <%= decorator %>
+                  </a>
+                <% end %>
+              </div>
+            </div>
+          </div>
         </div>
-        
       </div>
-     
-    </section><!-- End Services Section -->
-
-
-  <!-- ======= Footer ======= -->
+    </div>
+  </section>
   <footer id="footer">
-
     <div class="container-footer">
       <div class="copyright">
         &copy; Copyright <strong><span>Akrity</span></strong>. All Rights Reserved
       </div>
       <div class="credits">
-        <p>Made By <a href="https://bootstrapmade.com/">Akrity</a>
+        <p>Made By <a href="https://bootstrapmade.com/">Akrity</a></p>
       </div>
     </div>
-  </footer><!-- End Footer -->
-
+  </footer>
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
-<script>
-  document.addEventListener("DOMContentLoaded", function() {
-    var dropdowns = document.querySelectorAll(".dropdown");
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      var dropdowns = document.querySelectorAll(".dropdown-decorator");
 
-    dropdowns.forEach(function(dropdown) {
-      var selectButton = dropdown.querySelector(".btn-get-started");
-      var dropdownContent = dropdown.querySelector(".dropdown-content");
-      var dropdownOptions = dropdown.querySelectorAll(".dropdown-option");
+      dropdowns.forEach(function(dropdown) {
+        var selectButton = dropdown.querySelector("button");
+        var dropdownContent = dropdown.querySelector(".dropdown-content");
+        var dropdownOptions = dropdown.querySelectorAll(".dropdown-option");
 
-      dropdownOptions.forEach(function(option) {
-        option.addEventListener("click", function() {
-          var decorator = this.textContent;
-          selectButton.textContent = decorator;
-          dropdownContent.style.display = "none"; // Hide dropdown content
+        selectButton.addEventListener("click", function() {
+          dropdownContent.classList.toggle("show");
+        });
+
+        dropdownOptions.forEach(function(option) {
+          option.addEventListener("click", function(e) {
+            e.preventDefault();
+            var decoratorName = this.getAttribute('data-decorator');
+            var themeName = this.getAttribute('data-theme');
+            var price = this.getAttribute('data-price');
+
+            selectButton.textContent = "Decorator: " + decoratorName; // Change button text to show selected decorator
+            dropdownContent.classList.remove("show"); // Hide dropdown content
+
+            // Redirect to payment page with query parameters
+            window.location.href = `/payments?decoratorName=${encodeURIComponent(decoratorName)}&themeName=${encodeURIComponent(themeName)}&price=${encodeURIComponent(price)}`;
+          });
+        });
+      });
+
+      var selectCustomDecoratorButton = document.getElementById("select-custom-decorator");
+      var selectCustomDropdownContent = document.getElementById("custom-decorator-dropdown-content");
+
+      selectCustomDecoratorButton.addEventListener("click", function() {
+        selectCustomDropdownContent.classList.toggle("show");
+      });
+
+      var customDropdownOptions = selectCustomDropdownContent.querySelectorAll(".dropdown-option");
+
+      customDropdownOptions.forEach(function(option) {
+        option.addEventListener("click", function(e) {
+          e.preventDefault();
+          var decoratorName = this.getAttribute('data-decorator');
+          var price = Math.floor(Math.random() * (1000 - 500 + 1) ) + 500; // Random price between 500 and 1000
+          var themeName = "Custom";
+          var customization = document.getElementById("customization-input").value;
+
+          selectCustomDecoratorButton.textContent = "Decorator: " + decoratorName; // Change button text to show selected decorator
+          selectCustomDropdownContent.classList.remove("show"); // Hide dropdown content
+
+          // Redirect to payment page with query parameters
+          window.location.href = `/payments?decoratorName=${encodeURIComponent(decoratorName)}&themeName=${encodeURIComponent(themeName)}&price=${encodeURIComponent(price)}&customization=${encodeURIComponent(customization)}`;
         });
       });
     });
-  });
-</script>
-
-
+  </script>
 </body>
-
 </html>

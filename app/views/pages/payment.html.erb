@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Payment</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= stylesheet_link_tag 'decoration', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+  <div class="container">
+    <h2>Payment</h2>
+    <div>
+      <p><strong>Theme Name:</strong> <%= params[:themeName] %></p>
+      <p><strong>Decorator Name:</strong> <%= params[:decoratorName] %></p>
+      <p><strong>Price:</strong> <%= params[:price] %></p>
+    </div>
+    <div>
+      <a href="#" class="btn-get-started scrollto">Pay in Cash</a>
+      <a href="#" class="btn-get-started scrollto">Pay Online</a>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
@@ -10,6 +11,7 @@
   <%= stylesheet_link_tag 'decoration', media: 'all', 'data-turbolinks-track': 'reload' %>
   <%= csrf_meta_tags %>
 </head>
+
 <body>
   <header id="header" class="fixed-top">
     <div class="container d-flex align-items-center justify-content-between">
@@ -24,7 +26,7 @@
               <li><a href="family_occasions.html">Social Events Decoration</a></li>
               <li><a href="family_occasions.html">Destination Wedding Decoration</a></li>
               <li><a href="pandit_ji.html">Book Pandit Ji</a></li>
-              <li><a href="available_astrologer.html">Connect With Astrologer</a></li>>
+              <li><a href="available_astrologer.html">Connect With Astrologer</a></li>
             </ul>
           </li>
           <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
@@ -56,8 +58,7 @@
                 <button class="btn-get-started scrollto">Select Decorator</button>
                 <div class="dropdown-content">
                   <% @decorators.each do |decorator| %>
-                    <a href="#" class="dropdown-option" data-decorator="<%= decorator %>"
-                      data-theme="<%= theme[:name] %>" data-price="<%= theme[:price] %>">
+                    <a href="/payment?decoratorName=<%= decorator %>&themeName=<%= theme[:name] %>&price=<%= theme[:price] %>" class="dropdown-option">
                       <%= decorator %>
                     </a>
                   <% end %>
@@ -70,12 +71,12 @@
         <div id="customization">
           <div class="select_theme">
             <h4><a href="">Select Theme and Add your Customization</a></h4>
-            <input type="text" placeholder="Enter details....">
+            <input type="text" id="customization-input" placeholder="Enter details....">
             <div class="dropdown" style="margin-top: 20px;">
               <button id="select-custom-decorator" class="btn-get-started scrollto">Select Decorator</button>
               <div id="custom-decorator-dropdown-content" class="dropdown-content">
                 <% @decorators.each do |decorator| %>
-                  <a href="#" class="dropdown-option" data-decorator="<%= decorator %>">
+                  <a href="/payment?decoratorName=<%= decorator %>&themeName=Custom&price=<%= rand(500..1000) %>" class="dropdown-option">
                     <%= decorator %>
                   </a>
                 <% end %>
@@ -113,7 +114,7 @@
         dropdownOptions.forEach(function(option) {
           option.addEventListener("click", function(e) {
             e.preventDefault();
-            var decoratorName = this.getAttribute('data-decorator');
+            var decoratorName = this.textContent.trim();
             var themeName = this.getAttribute('data-theme');
             var price = this.getAttribute('data-price');
 
@@ -138,8 +139,8 @@
       customDropdownOptions.forEach(function(option) {
         option.addEventListener("click", function(e) {
           e.preventDefault();
-          var decoratorName = this.getAttribute('data-decorator');
-          var price = Math.floor(Math.random() * (1000 - 500 + 1) ) + 500; // Random price between 500 and 1000
+          var decoratorName = this.textContent.trim();
+          var price = Math.floor(Math.random() * (1000 - 500 + 1)) + 500; // Random price between 500 and 1000
           var themeName = "Custom";
           var customization = document.getElementById("customization-input").value;
 
@@ -153,4 +154,5 @@
     });
   </script>
 </body>
+
 </html>

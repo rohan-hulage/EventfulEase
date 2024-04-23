@@ -24,8 +24,11 @@ class PagesController < ApplicationController
     @price = params[:price].to_i
 
     @booking = Booking.new(theme: @theme_name, vendor_name: @decorator_name, price: @price, email: current_account.email)
-    @booking.save
-    redirect_to user_profile_path
+    if @booking.save
+      render :payment
+    else
+      redirect_to user_profile_path, alert: 'Error creating booking.'
+    end
   end
 
   def make_payment

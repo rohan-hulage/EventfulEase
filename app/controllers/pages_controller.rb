@@ -18,6 +18,14 @@ class PagesController < ApplicationController
     @decorators = Registration.where(vendor_type: 'decorator').pluck(:name).uniq
   end
 
+  def social_events
+    @decorators = Registration.where(vendor_type: 'decorator').pluck(:name).uniq
+  end
+
+  def destination_wedding
+    @decorators = Registration.where(vendor_type: 'decorator').pluck(:name).uniq
+  end
+
   def payment
     @theme_name = params[:Name]
     @decorator_name = params[:decoratorName]

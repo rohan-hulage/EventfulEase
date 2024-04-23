@@ -24,8 +24,8 @@ Rails.application.routes.draw do
   get 'home', to: 'pages#home', as: :home
 
   get 'family_occasions', to: 'pages#family_occasions'
-
-
+  get 'social_events', to: 'pages#social_events'
+  get 'destination_wedding', to: 'pages#destination_wedding'
 
   get '/payments', to: 'pages#payment', as: 'payment'
   post '/payments', to: 'pages#make_payment', as: 'make_payment'

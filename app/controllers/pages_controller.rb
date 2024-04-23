@@ -25,6 +25,10 @@ class PagesController < ApplicationController
     @theme_name = params[:themeName]
     @decorator_name = params[:decoratorName]
     @price = params[:price].to_i
+
+    @booking = Booking.new(theme_name: @theme_name, decorator_name: @decorator_name, price: @price, email: current_account.email)
+    @booking.save
+    redirect_to user_profile_path
   end
 
   def make_payment

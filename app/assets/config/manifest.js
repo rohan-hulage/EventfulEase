@@ -5,3 +5,4 @@
 //= link application.css
 //= link profile.css
 //= link decoration.css
+//= link payment.css

@@ -3,25 +3,100 @@
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <title>Payment</title>
+  <title>EventfulEase - Payment</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
   <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-  <%= stylesheet_link_tag 'decoration', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= stylesheet_link_tag 'payment', media: 'all', 'data-turbolinks-track': 'reload' %>
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <div class="container">
-    <h2>Payment</h2>
-    <div>
-      <p><strong>Theme Name:</strong> <%= params[:themeName] %></p>
-      <p><strong>Decorator Name:</strong> <%= params[:decoratorName] %></p>
-      <p><strong>Price:</strong> <%= params[:price] %></p>
+  <header id="header" class="fixed-top">
+    <div class="container d-flex align-items-center justify-content-between">
+      <h1 class="logo"><a href="index.html">EventfulEase</a></h1>
+      <nav id="navbar" class="navbar">
+        <ul>
+          <li><a class="nav-link scrollto active" href="#">Home</a></li>
+          <li><a class="nav-link scrollto" href="#about">About</a></li>
+          <li class="dropdown"><a href="#services"><span>Services</span> <i class="bi bi-chevron-down"></i></a>
+            <ul>
+              <li><a href="family_occasions.html">Family Occasions Decoration</a></li>
+              <li><a href="family_occasions.html">Social Events Decoration</a></li>
+              <li><a href="family_occasions.html">Destination Wedding Decoration</a></li>
+              <li><a href="pandit_ji.html">Book Pandit Ji</a></li>
+              <li><a href="available_astrologer.html">Connect With Astrologer</a></li>
+            </ul>
+          </li>
+          <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
+          <li><a class="nav-link scrollto" href="user_profile">Profile</a></li>
+        <i class="bi bi-list mobile-nav-toggle"></i>
+      </nav><!-- .navbar -->
     </div>
-    <div>
-      <a href="#" class="btn-get-started scrollto">Pay in Cash</a>
-      <a href="#" class="btn-get-started scrollto">Pay Online</a>
+  </header><!-- End Header -->
+
+  <!-- ======= Payment Section ======= -->
+  <section id="payment" class="payment">
+    <div class="container ">
+        <div class="section-title">
+        <h2>Payment Details</h2>
+        </div>
+        <div class="row">
+            <div class="box-parent">
+                <div class="box ">
+                    <h4><strong>Theme Name:</strong> <%= params[:themeName] %> </h4>
+                    <h4><strong>Decorator Name:</strong> <%= params[:decoratorName] %></h4> 
+                    <h4><strong>Price:</strong> <%= params[:price] %></h4>
+                    <h4>Select Payment Option:</h4>
+                    <div class="pay-buttons" >
+                        <a href="#" class="btn-get-started scrollto" id="cash" >Pay in Cash</a>
+                        <a href="#" class="btn-get-started scrollto" id="online" >Pay Online</a>
+                    </div>  
+                </div>
+            </div>    
+        </div>
+            <div class="row parent-parent">
+                <div class="after-click" style="display:none;">     
+                    <p id="payment_status" >Payment is confirmed</p>
+                    <a id="bookingList"  style="display:none;">Booking List</a>
+                </div>
+            </div>   
     </div>
-  </div>
+  </section>
+  <!-- End Payment Section -->
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer">
+    <div class="container-footer">
+      <div class="copyright">
+        &copy; Copyright <strong><span>Akrity</span></strong>. All Rights Reserved
+      </div>
+      <div class="credits">
+        <p>Made By <a href="https://bootstrapmade.com/">Akrity</a></p>
+      </div>
+    </div>
+  </footer><!-- End Footer -->
+
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+
+  <script>
+    document.getElementById("cash").addEventListener("click", function() {
+      document.querySelector(".after-click").style.display = "block";
+      document.getElementById("bookingList").style.display = "block";
+      document.getElementById("payment_status").innerText = "Payment is confirmed";
+    });
+
+    document.getElementById("online").addEventListener("click", function() {
+      document.querySelector(".after-click").style.display = "block";
+      document.getElementById("bookingList").style.display = "block";
+      document.getElementById("payment_status").innerText = "Payment is confirmed";
+    });
+
+    document.getElementById("bookingList").addEventListener("click", function() {
+      window.location.href = "booking_list.html";
+    });
+  </script>
 </body>
 </html>

@@ -6,3 +6,4 @@
 //= link profile.css
 //= link decoration.css
 //= link payment.css
+//= link search_pandit_ji.css

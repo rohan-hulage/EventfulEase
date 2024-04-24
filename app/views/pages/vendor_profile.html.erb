@@ -85,11 +85,11 @@
                   </li>
   
                   <li class="nav-item">
-                    <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-edit">Booking List</button>
+                    <button class="nav-link" data-bs-toggle="tab" data-bs-target="#booking-list">Booking List</button>
                   </li>
 
                   <li class="nav-item">
-                    <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-edit">Request List</button>
+                    <button class="nav-link" data-bs-toggle="tab" data-bs-target="#request-list">Request List</button>
                   </li>
 
                 </ul>
@@ -126,18 +126,58 @@
   
                   </div>
   
-                  <div class="tab-pane fade profile-edit pt-3" id="profile-edit">
+                 <div class="tab-pane fade profile-edit pt-3" id="booking-list">
+                  <h2>Booking List</h2>
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th>Theme</th>
+                        <th>Booking By</th>
+                        <th>Price</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <% @bookings.each do |booking| %>
+                        <tr>
+                          <td><%= booking.theme %></td>
+                          <td><%= booking.booking_by %></td>
+                          <td><%= booking.price %></td>
+                        </tr>
+                      <% end %>
+                    </tbody>
+                  </table>
+                </div>
 
-                    <div class="row">
-                        <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
-                          <div class="icon-box">
-    
-                            <h4><a href="">Pratik Kale</a></h4>
-                            <a href="#about" class="btn-get-started scrollto">Service</a>
-                          </div>
-                        </div>
+                <div class="tab-pane fade profile-edit pt-3" id="request-list">
+                  <h2>Request List</h2>
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th>Theme</th>
+                        <th>Requested By</th>
+                        <th>Price</th>
+                        <th>Action</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <% @requests.each do |booking| %>
+                        <tr>
+                          <td><%= booking.theme %></td>
+                          <td><%= booking.booking_by %></td>
+                          <td><%= booking.price %></td>
+                          <td>
+                            <%= button_to "Accept", accept_booking_path(booking.id), method: :post, class: "btn btn-success", remote: true %>
+                            <%= button_to "Reject", reject_booking_path(booking.id), method: :delete, class: "btn btn-danger", remote: true %>
+                          </td>
+                        </tr>
+                      <% end %>
+                    </tbody>
+                  </table>
+                </div>
 
-                  </div>
+
+      </section>        
+
   
   </main><!-- End #main -->
 

@@ -8,55 +8,55 @@
 </head>
 
 <script>
-    document.addEventListener("DOMContentLoaded", function() {
-      const passwordField = document.getElementById("registration_password");
-      const passwordStrength = document.createElement("div");
-      passwordField.parentNode.insertBefore(passwordStrength, passwordField.nextSibling);
+  document.addEventListener("DOMContentLoaded", function() {
+    const passwordField = document.getElementById("registration_password");
+    const passwordStrength = document.createElement("div");
+    passwordField.parentNode.insertBefore(passwordStrength, passwordField.nextSibling);
 
-      passwordField.addEventListener('input', function() {
-        const value = passwordField.value;
-        let strength = '';
-        let color = 'red';
-        
-        const hasLowerCase = /[a-z]/.test(value);
-        const hasUpperCase = /[A-Z]/.test(value);
-        const hasNumbers = /[0-9]/.test(value);
-        const hasSpecial = /[\!\@\#\$\%\^\&\*\(\)\_\+\-\=\[\]\{\}\;\:\'\"\\|,\.\/\<\>\?]/.test(value);
-        const lengthCheck = value.length >= 8;
+    passwordField.addEventListener('input', function() {
+      const value = passwordField.value;
+      let strength = '';
+      let color = 'red';
+      
+      const hasLowerCase = /[a-z]/.test(value);
+      const hasUpperCase = /[A-Z]/.test(value);
+      const hasNumbers = /[0-9]/.test(value);
+      const hasSpecial = /[\!\@\#\$\%\^\&\*\(\)\_\+\-\=\[\]\{\}\;\:\'\"\\|,\.\/\<\>\?]/.test(value);
+      const lengthCheck = value.length >= 8;
 
-        const score = [hasLowerCase, hasUpperCase, hasNumbers, hasSpecial, lengthCheck].reduce((acc, curr) => acc + curr, 0);
+      const score = [hasLowerCase, hasUpperCase, hasNumbers, hasSpecial, lengthCheck].reduce((acc, curr) => acc + curr, 0);
 
-        switch(score) {
-          case 0:
-            strength = 'Password is very weak';
-            break;
-          case 1:
-            strength = 'Password is very weak';
-            break;
-          case 2:
-            strength = 'Password is weak';
-            break;
-          case 3:
-            strength = 'Password is good';
-            break;
-          case 4:
-            strength = 'Password is strong';
-            break;
-          case 5:
-            strength = 'Password is very strong';
-            color = 'green';
-            break;
-          default:
-            strength = 'Password is very weak';
-        }
+      switch(score) {
+        case 0:
+          strength = 'Password is very weak';
+          break;
+        case 1:
+          strength = 'Password is very weak';
+          break;
+        case 2:
+          strength = 'Password is weak';
+          break;
+        case 3:
+          strength = 'Password is good';
+          break;
+        case 4:
+          strength = 'Password is strong';
+          break;
+        case 5:
+          strength = 'Password is very strong';
+          color = 'green';
+          break;
+        default:
+          strength = 'Password is very weak';
+      }
 
-        passwordStrength.textContent = strength;
-        passwordStrength.style.color = color;
-      });
+      passwordStrength.textContent = strength;
+      passwordStrength.style.color = color;
     });
+  });
 
-    
-  </script>
+  
+</script>
 
 <body>
 <div class="register-page">
@@ -95,7 +95,7 @@
       </div>
     </div>
 
-    <%= form.submit "Register", class: "register-button" %>
+    <%= form.submit "Register", class: "register-button", method: :post %>
   <% end %>
 </div>
 

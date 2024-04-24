@@ -1,5 +1,5 @@
 class PagesController < ApplicationController
-  before_action :require_login, only: :home
+  before_action :require_login, only: [:home, :accept_booking, :reject_booking]
 
   def index
   end
@@ -12,6 +12,8 @@ class PagesController < ApplicationController
   end
 
   def vendor_profile
+    @bookings = Booking.where(vendor_id: current_account.id)
+    @requests = Booking.where(booking_for: current_account.name)
   end
 
   def family_occasions
@@ -24,6 +26,10 @@ class PagesController < ApplicationController
 
   def destination_wedding
     @decorators = Registration.where(vendor_type: 'decorator').pluck(:name).uniq
+  end
+
+  def pandit_ji
+
   end
 
   def payment
@@ -45,7 +51,8 @@ class PagesController < ApplicationController
       booking_by: current_account.name,
       booking_for: params[:decoratorName],
       price: params[:price].delete('$').to_i,
-      email: current_account.email
+      email: current_account.email,
+      vendor_id: current_account.id
     )
 
     respond_to do |format|
@@ -58,6 +65,30 @@ class PagesController < ApplicationController
       end
     end
   end
+
+  def accept_booking
+    @booking = Booking.find(params[:id])
+
+
+    if @booking.update(vendor_id: current_account.id)
+
+      redirect_to vendor_profile_path, notice: 'Booking accepted successfully.'
+    else
+      redirect_back(fallback_location: root_path, alert: 'Error accepting booking.')
+    end
+  end
+
+  def reject_booking
+    @booking = Booking.find(params[:id])
+
+    # Remove the booking from the request list
+    if @booking.destroy
+      redirect_back(fallback_location: root_path, notice: 'Booking rejected successfully.')
+    else
+      redirect_back(fallback_location: root_path, alert: 'Error rejecting booking.')
+    end
+  end
+
 
 
 end

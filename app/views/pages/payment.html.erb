@@ -21,14 +21,15 @@
           <li class="dropdown"><a href="#services"><span>Services</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
               <li><a href="family_occasions.html">Family Occasions Decoration</a></li>
-              <li><a href="family_occasions.html">Social Events Decoration</a></li>
-              <li><a href="family_occasions.html">Destination Wedding Decoration</a></li>
+              <li><a href="social_events.html">Social Events Decoration</a></li>
+              <li><a href="destination_wedding.html">Destination Wedding Decoration</a></li>
               <li><a href="pandit_ji.html">Book Pandit Ji</a></li>
               <li><a href="available_astrologer.html">Connect With Astrologer</a></li>
             </ul>
           </li>
           <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
           <li><a class="nav-link scrollto" href="user_profile">Profile</a></li>
+        </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
     </div>
@@ -37,29 +38,29 @@
   <!-- ======= Payment Section ======= -->
   <section id="payment" class="payment">
     <div class="container ">
-        <div class="section-title">
+      <div class="section-title">
         <h2>Payment Details</h2>
+      </div>
+      <div class="row">
+        <div class="box-parent">
+          <div class="box">
+            <h4><strong>Theme Name:</strong> <%= @theme_name %></h4>
+            <h4><strong>Decorator Name:</strong> <%= @decorator_name %></h4> 
+            <h4><strong>Price:</strong> <%= @price %></h4>
+            <h4>Select Payment Option:</h4>
+            <div class="pay-buttons" >
+              <%= link_to "Pay in Cash", "#", id: "cash", class: "btn-get-started scrollto", data: { type: "cash" } %>
+              <%= link_to "Pay Online", "#", id: "online", class: "btn-get-started scrollto", data: { type: "online" } %>
+            </div>  
+          </div>
+        </div>    
+      </div>
+      <div class="row parent-parent">
+        <div class="after-click" style="display:none;">     
+          <p id="payment_status" ></p>
+          <%= link_to "Booking List", user_profile_path, style: "display:none;", id: "bookingList" %>
         </div>
-        <div class="row">
-            <div class="box-parent">
-                <div class="box ">
-                    <h4><strong>Theme Name:</strong> <%= params[:themeName] %> </h4>
-                    <h4><strong>Decorator Name:</strong> <%= params[:decoratorName] %></h4> 
-                    <h4><strong>Price:</strong> <%= params[:price] %></h4>
-                    <h4>Select Payment Option:</h4>
-                    <div class="pay-buttons" >
-                        <a href="#" class="btn-get-started scrollto" id="cash" >Pay in Cash</a>
-                        <a href="#" class="btn-get-started scrollto" id="online" >Pay Online</a>
-                    </div>  
-                </div>
-            </div>    
-        </div>
-            <div class="row parent-parent">
-                <div class="after-click" style="display:none;">     
-                    <p id="payment_status" >Payment is confirmed</p>
-                    <a id="bookingList" href="user_profile?themeName=<%= params[:themeName] %>&decoratorName=<%= params[:decoratorName] %>&price=<%= params[:price] %>" style="display:none;">Booking List</a>
-                </div>
-            </div>   
+      </div>   
     </div>
   </section>
   <!-- End Payment Section -->
@@ -80,18 +81,41 @@
 
   <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
 
-
   <script>
-    document.getElementById("cash").addEventListener("click", function() {
-      document.querySelector(".after-click").style.display = "block";
-      document.getElementById("bookingList").style.display = "block";
-      document.getElementById("payment_status").innerText = "Payment is confirmed";
-    });
+    document.addEventListener("DOMContentLoaded", function() {
+      document.querySelectorAll(".btn-get-started").forEach(function(button) {
+        button.addEventListener("click", function(e) {
+          e.preventDefault();
+          var type = this.dataset.type;
+          var themeName = "<%= @theme_name %>";
+          var decoratorName = "<%= @decorator_name %>";
+          var price = "<%= @price %>";
 
-    document.getElementById("online").addEventListener("click", function() {
-      document.querySelector(".after-click").style.display = "block";
-      document.getElementById("bookingList").style.display = "block";
-      document.getElementById("payment_status").innerText = "Payment is confirmed";
+          var data = {
+            theme: themeName,
+            decoratorName: decoratorName,
+            price: price
+          };
+
+          fetch("<%= make_payment_path(format: :json) %>", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              "X-CSRF-Token": "<%= form_authenticity_token %>"
+            },
+            body: JSON.stringify(data)
+          })
+          .then(response => response.json())
+          .then(data => {
+            document.querySelector(".after-click").style.display = "block";
+            document.getElementById("bookingList").style.display = "block";
+            document.getElementById("payment_status").innerText = "Payment is confirmed";
+          })
+          .catch((error) => {
+            console.error("Error:", error);
+          });
+        });
+      });
     });
   </script>
 </body>

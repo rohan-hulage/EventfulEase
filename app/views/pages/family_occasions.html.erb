@@ -23,8 +23,8 @@
           <li class="dropdown"><a href="home.html"><span>Services</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
               <li><a href="family_occasions.html">Family Occasions Decoration</a></li>
-              <li><a href="family_occasions.html">Social Events Decoration</a></li>
-              <li><a href="family_occasions.html">Destination Wedding Decoration</a></li>
+              <li><a href="social_events.html">Social Events Decoration</a></li>
+              <li><a href="destination_wedding.html">Destination Wedding Decoration</a></li>
               <li><a href="pandit_ji.html">Book Pandit Ji</a></li>
               <li><a href="available_astrologer.html">Connect With Astrologer</a></li>
             </ul>
@@ -58,7 +58,8 @@
                 <button class="btn-get-started scrollto">Select Decorator</button>
                 <div class="dropdown-content">
                   <% @decorators.each do |decorator| %>
-                    <a href="/payment?decoratorName=<%= decorator %>&themeName=<%= theme[:name] %>&price=<%= theme[:price] %>" class="dropdown-option">
+                    <a href="/payment?decoratorName=<%= decorator %>&themeName=<%= theme[:name] %>&price=<%= theme[:price] %>" class="dropdown-option" data-theme="<%= theme[:name] %>" data-price="<%= theme[:price] %>">
+                
                       <%= decorator %>
                     </a>
                   <% end %>

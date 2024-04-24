@@ -10,14 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_04_23_103936) do
+ActiveRecord::Schema[7.1].define(version: 2024_04_24_053350) do
   create_table "bookings", force: :cascade do |t|
     t.string "theme"
-    t.string "vendor_name"
     t.integer "price"
     t.string "email"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "booking_by"
+    t.string "booking_for"
   end
 
   create_table "registrations", force: :cascade do |t|

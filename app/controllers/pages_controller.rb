@@ -27,30 +27,37 @@ class PagesController < ApplicationController
   end
 
   def payment
-    @theme_name = params[:Name]
+    @theme_name = params[:themeName]
     @decorator_name = params[:decoratorName]
-    @price = params[:price].to_i
+    @price = params[:price]
 
-    @booking = Booking.new(theme: @theme_name, vendor_name: @decorator_name, price: @price, email: current_account.email)
-    if @booking.save
-      render :payment
-    else
-      redirect_to user_profile_path, alert: 'Error creating booking.'
-    end
+    # Store the payment details in the session
+    session[:payment_details] = {
+      theme: @theme_name,
+      decorator_name: @decorator_name,
+      price: @price
+    }
   end
 
   def make_payment
     @booking = Booking.new(
       theme: params[:theme],
-      vendor_name: params[:decoratorName],
-      price: params[:price],
-      email: current_user.email
+      booking_by: current_account.name,
+      booking_for: params[:decoratorName],
+      price: params[:price].delete('$').to_i,
+      email: current_account.email
     )
 
-    if @booking.save
-      redirect_to user_profile_path, notice: 'Booking was successfully created.'
-    else
-      redirect_to payment_path(theme: params[:theme], decoratorName: params[:decoratorName], price: params[:price]), alert: 'Error creating booking.'
+    respond_to do |format|
+      if @booking.save
+        format.html { redirect_to user_profile_path, notice: 'Booking was successfully created.' }
+        format.json { render json: { booking: @booking } }
+      else
+        format.html { redirect_to payment_path(theme: params[:theme], decoratorName: params[:decoratorName], price: params[:price]), alert: 'Error creating booking.' }
+        format.json { render json: @booking.errors, status: :unprocessable_entity }
+      end
     end
   end
+
+
 end

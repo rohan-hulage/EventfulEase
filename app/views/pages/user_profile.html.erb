@@ -137,11 +137,13 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <td><%= params[:themeName] %></td>
-                        <td><%= params[:decoratorName] %></td>
-                        <td><%= params[:price] %></td>
-                      </tr>
+                      <% @bookings.each do |booking| %>
+                        <tr>
+                          <td><%= booking.theme %></td>
+                          <td><%= booking.booking_for %></td>
+                          <td>$<%= booking.price %></td>
+                        </tr>
+                      <% end %>
                     </tbody>
                   </table>
                   <%

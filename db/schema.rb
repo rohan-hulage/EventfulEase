@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_04_24_094446) do
+ActiveRecord::Schema[7.1].define(version: 2024_04_25_072148) do
   create_table "bookings", force: :cascade do |t|
     t.string "theme"
     t.integer "price"
@@ -20,6 +20,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_24_094446) do
     t.string "booking_by"
     t.string "booking_for"
     t.integer "vendor_id"
+    t.integer "rating"
   end
 
   create_table "registrations", force: :cascade do |t|

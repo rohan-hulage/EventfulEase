@@ -420,6 +420,13 @@ body {
   .footer-top .footer-newsletter  input[type=submit]:hover {
     background: #206bfb;
   }
+  
+  .services{
+    margin-top: -10px;
+  }
+  .services .section-title{ 
+     margin-top: -40px;
+  }
 
   .services .icon-box {
     text-align: center;
@@ -427,6 +434,7 @@ body {
     padding: 40px 40px;
     transition: all ease-in-out 0.3s;
     background: #fff;
+   
   }
   
   .services .icon-box h4 {

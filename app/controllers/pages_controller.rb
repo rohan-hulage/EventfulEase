@@ -1,5 +1,5 @@
 class PagesController < ApplicationController
-  before_action :require_login, only: [:home, :accept_booking, :reject_booking]
+  before_action :require_login, only: [:home, :accept_booking, :reject_booking, :update_rating]
 
   def index
   end
@@ -14,6 +14,7 @@ class PagesController < ApplicationController
   def vendor_profile
     @bookings = Booking.where(vendor_id: current_account.id)
     @requests = Booking.where(booking_for: current_account.name)
+    @rating = Booking.where(vendor_id: current_account.id).average(:rating)
   end
 
   def family_occasions
@@ -69,14 +70,15 @@ class PagesController < ApplicationController
   def accept_booking
     @booking = Booking.find(params[:id])
 
-
     if @booking.update(vendor_id: current_account.id)
-
+      @request = Booking.find_by(id: @booking.id, booking_for: current_account.name)
       redirect_to vendor_profile_path, notice: 'Booking accepted successfully.'
+
     else
       redirect_back(fallback_location: root_path, alert: 'Error accepting booking.')
     end
   end
+
 
   def reject_booking
     @booking = Booking.find(params[:id])
@@ -86,6 +88,16 @@ class PagesController < ApplicationController
       redirect_back(fallback_location: root_path, notice: 'Booking rejected successfully.')
     else
       redirect_back(fallback_location: root_path, alert: 'Error rejecting booking.')
+    end
+  end
+
+  def update_rating
+    @booking = Booking.find(params[:booking_id])
+    @booking.update(rating: params[:rating])
+
+    respond_to do |format|
+      format.html { redirect_to user_profile_path, notice: 'Rating updated successfully.' }
+      format.json { render json: { booking: @booking } }
     end
   end
 

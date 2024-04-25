@@ -134,6 +134,7 @@
                         <th>Experties</th>
                         <th>Vendor Name</th>
                         <th>Price</th>
+                        <th>Rating</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -142,6 +143,15 @@
                           <td><%= booking.theme %></td>
                           <td><%= booking.booking_for %></td>
                           <td>$<%= booking.price %></td>
+                          <td>
+                          <% if booking.rating.present? %>
+                              <%= booking.rating %>
+                              <% else %>
+                                <%= form_tag update_rating_path(booking_id: booking.id), method: :post, remote: true do %>
+                                  <%= select_tag :rating, options_for_select((1..10).to_a), class: 'rating-button', onchange: 'this.form.submit()' %>
+                                <% end %>
+                          <% end %>
+                          </td>
                         </tr>
                       <% end %>
                     </tbody>

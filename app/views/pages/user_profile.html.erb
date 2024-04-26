@@ -148,7 +148,7 @@
                               <%= booking.rating %>
                               <% else %>
                                 <%= form_tag update_rating_path(booking_id: booking.id), method: :post, remote: true do %>
-                                  <%= select_tag :rating, options_for_select((1..10).to_a), class: 'rating-button', onchange: 'this.form.submit()' %>
+                                  <%= select_tag :rating, options_for_select((1..5).to_a), class: 'rating-button', onchange: 'this.form.submit()' %>
                                 <% end %>
                           <% end %>
                           </td>

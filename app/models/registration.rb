@@ -1,5 +1,7 @@
 class Registration < ApplicationRecord
 
+  has_many :bookings, foreign_key: 'booking_for', primary_key: 'name'
+
   before_save { self.email = email.downcase }
 
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i

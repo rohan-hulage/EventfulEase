@@ -21,9 +21,6 @@
     <div class="container d-flex align-items-center justify-content-between">
 
       <h1 class="logo"><a href="index.html">EventfulEase</a></h1>
-      <!-- Uncomment below if you prefer to use an image logo -->
-      <!-- <a href="index.html" class="logo"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
-
       <nav id="navbar" class="navbar">
         <ul>
           <li><a class="nav-link scrollto active" href="home.html">Home</a></li>
@@ -74,42 +71,24 @@
     <!-- ======= Services Section ======= -->
     <section id="services" class="services section-bg">
       <div class="container">
-
         <div class="section-title">
-          <h2>Suggested</h2>
+          <h2>Suggested Pandit Ji</h2>
+        </div>
+        <div class="row">
+          <% @top_pandits.each do |pandit_name, average_rating| %>
+            <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
+              <div class="icon-box">
+                <h4><%= pandit_name %></h4>
+                <p><%= Registration.find_by(name: pandit_name).expertise %></p>
+                <p> <%= average_rating %></p>
+                <a href="" class="btn-get-started scrollto" type="submit">$500</a>
+              </div>
+            </div>
+          <% end %>
         </div>
 
-        <div class="row">
-          <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
-            <div class="icon-box">
-              
-              <h4><a href="">Pandit Rajesh Sharma</a></h4>
-              <p>With over 15 years of experience in Vedic rituals and ceremonies, Pandit Rajesh Sharma brings a wealth of knowledge and devotion to every pooja he conducts.</p>
-              <a href="#about" class="btn-get-started scrollto">$500</a>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
-            <div class="icon-box">
-             
-              <h4><a href="">Pandit Arjun Mishra</a></h4>
-              <p>A highly respected Pandit with a deep understanding of Hindu scriptures, Pandit Arjun Mishra is renowned for his impeccable conduct of religious ceremonies.</p>
-              <a href="#about" class="btn-get-started scrollto">$500</a>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
-            <div class="icon-box">
-              
-              <h4><a href="">Pandit Suresh Vyas</a></h4>
-              <p>With a blend of traditional wisdom and modern insight, Pandit Suresh Vyas offers personalized and meaningful rituals tailored to each individual's spiritual journey.</p>
-              <a href="#about" class="btn-get-started scrollto">$500</a>
-            </div>
-          </div>
-
-      </div>
-     
-    </section><!-- End Services Section -->
+    </section>
+    <!-- End Services Section -->
 
 
   <!-- ======= Footer ======= -->
@@ -125,7 +104,7 @@
     </div>
   </footer><!-- End Footer -->
 
-  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+ 
 
 
 </body>

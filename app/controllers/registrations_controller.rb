@@ -14,9 +14,12 @@ class RegistrationsController < ApplicationController
     if @registration.save
       if @registration.register_as == 'vendor'
         redirect_to root_url, notice: 'Registered as vendor.'
-      else
+      elsif @registration.register_as == 'user'
         redirect_to root_url, notice: 'Registered as user.'
+      else
+       redirect_to registration_path notice: 'Enter Correct Details'
       end
+
     else
       render :new
     end

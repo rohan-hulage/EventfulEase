@@ -30,6 +30,7 @@ class PagesController < ApplicationController
   end
 
   def pandit_ji
+    @top_pandits = Registration.where(vendor_type: 'pandit').left_joins(:bookings).group(:name).average(:rating).sort_by { |_, v| v }.reverse.first(3)
 
   end
 
@@ -71,13 +72,12 @@ class PagesController < ApplicationController
     @booking = Booking.find(params[:id])
 
     if @booking.update(vendor_id: current_account.id)
-      @request = Booking.find_by(id: @booking.id, booking_for: current_account.name)
       redirect_to vendor_profile_path, notice: 'Booking accepted successfully.'
-
     else
       redirect_back(fallback_location: root_path, alert: 'Error accepting booking.')
     end
   end
+
 
 
   def reject_booking

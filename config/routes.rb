@@ -33,8 +33,6 @@ Rails.application.routes.draw do
   post '/accept_booking/:id', to: 'pages#accept_booking', as: 'accept_booking'
   delete '/reject_booking/:id', to: 'pages#reject_booking', as: 'reject_booking'
 
-
-
   post '/update_rating', to: 'pages#update_rating'
   post 'update_vendor_rating', to: 'pages#update_vendor_rating', as: 'update_vendor_rating'
 

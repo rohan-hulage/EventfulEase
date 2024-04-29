@@ -7,3 +7,4 @@
 //= link decoration.css
 //= link payment.css
 //= link search_pandit_ji.css
+//= link available_astrologer.css

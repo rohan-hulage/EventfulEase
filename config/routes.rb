@@ -26,6 +26,16 @@ Rails.application.routes.draw do
   get 'social_events', to: 'pages#social_events'
   get 'destination_wedding', to: 'pages#destination_wedding'
   get 'pandit_ji', to: 'pages#pandit_ji'
+  get 'available_astrologer', to: 'pages#available_astrologer'
+
+
+  get 'search_pandit_ji', to: 'pages#pandit_ji'
+  get '/payment_pandit_ji', to: 'pages#payment_pandit_ji', as: 'payment_pandit_ji'
+  post '/make_payment_pandit_ji', to: 'pages#make_payment_pandit_ji', as: 'make_payment_pandit_ji'
+
+  get '/payment_astrologer', to: 'pages#payment_astrologer', as: 'payment_astrologer'
+  post '/make_payment_astrologer', to: 'pages#make_payment_astrologer', as: 'make_payment_astrologer'
+
 
   get '/payments', to: 'pages#payment', as: 'payment'
   post '/payments', to: 'pages#make_payment', as: 'make_payment'

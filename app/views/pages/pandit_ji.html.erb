@@ -1,25 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
-
   <title>EventfulEase</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
-
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= stylesheet_link_tag 'search_pandit_ji', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= csrf_meta_tags %>
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= stylesheet_link_tag 'search_pandit_ji', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= csrf_meta_tags %>
 </head>
-
 <body>
-
   <!-- ======= Header ======= -->
   <header id="header" class="fixed-top">
     <div class="container d-flex align-items-center justify-content-between">
-
       <h1 class="logo"><a href="index.html">EventfulEase</a></h1>
       <nav id="navbar" class="navbar">
         <ul>
@@ -36,79 +30,87 @@
           </li>
           <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
           <li><a class="nav-link scrollto" href="user_profile.html">Profile</a></li>
+        </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
-
     </div>
   </header><!-- End Header -->
 
-    <section>
-      <div class="footer-top">
-
-        <div class="container">
-  
-          <div class="row  justify-content-center">
-            <div class="col-lg-6">
-              <h3>Search Pandit Ji</h3>
-              <p>Get the Best Pandit Ji for your Pooja</p>
-            </div>
+  <section>
+    <div class="footer-top">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-6">
+            <h3>Search Pandit Ji</h3>
+            <p>Get the Best Pandit Ji for your Pooja</p>
           </div>
-  
-          <div class="row footer-newsletter justify-content-center">
-            <div class="col-lg-6 search-pandit-box">
-              
-                <input type="text" name="text" placeholder="Search for Pooja or Pandit Ji">
-                <input type="submit" value="Search">
-              
-            </div>
+        </div>
+        <div class="row footer-newsletter justify-content-center">
+          <div class="col-lg-6 search-pandit-box">
+            <%= form_tag search_pandit_ji_path, method: :get do %>
+              <%= text_field_tag :search, params[:search], placeholder: "Search for Pooja or Pandit Ji", id: "searchInput"%>
+              <%= submit_tag "Search", id: "searchButton"%>
+            <% end %>
           </div>
-  
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    
-    <!-- ======= Services Section ======= -->
-    <section id="services" class="services section-bg">
-      <div class="container">
-        <div class="section-title">
-          <h2>Suggested Pandit Ji</h2>
-        </div>
-        <div class="row">
+  <!-- ======= Services Section ======= -->
+  <section id="services" class="services section-bg">
+    <div class="container">
+      <div class="section-title">
+        <h2><%= @search_performed ? 'Results for Your Search' : 'Suggested Pandit Ji' %></h2>
+      </div>
+      <div class="row">
+        <% if @search_performed %>
+          <% @search_results.each do |pandit_name, average_rating| %>
+            <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
+              <div class="icon-box">
+                <h4><%= pandit_name %></h4>
+                <p><%= Registration.find_by(name: pandit_name).expertise %></p>
+                <%= link_to 'Book Now', payment_pandit_ji_path(pooja_name: params[:search], pandit_name: pandit_name), class: 'btn-get-started scrollto' %>
+              </div>
+            </div>
+          <% end %>
+        <% else %>
           <% @top_pandits.each do |pandit_name, average_rating| %>
             <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
               <div class="icon-box">
                 <h4><%= pandit_name %></h4>
                 <p><%= Registration.find_by(name: pandit_name).expertise %></p>
-                <p> <%= average_rating %></p>
-                <a href="" class="btn-get-started scrollto" type="submit">$500</a>
+                <%= link_to 'Book Now', payment_pandit_ji_path(pooja_name: nil, pandit_name: pandit_name), class: 'btn-get-started scrollto' %>
               </div>
             </div>
           <% end %>
-        </div>
-
-    </section>
-    <!-- End Services Section -->
-
+        <% end %>
+      </div>
+    </div>
+  </section>
+  <!-- End Services Section -->
 
   <!-- ======= Footer ======= -->
   <footer id="footer">
-
     <div class="container-footer">
       <div class="copyright">
         &copy; Copyright <strong><span>Akrity</span></strong>. All Rights Reserved
       </div>
       <div class="credits">
-        <p>Made By <a href="https://bootstrapmade.com/">Akrity</a>
+        <p>Made By <a href="https://bootstrapmade.com/">Akrity</a></p>
       </div>
     </div>
   </footer><!-- End Footer -->
 
- 
-
-
+  <script>
+    function searchPandit() {
+      var input = document.getElementById('searchInput').value;
+      if (input) {
+        window.location.href = '<%= search_pandit_ji_path %>?search=' + encodeURIComponent(input);
+      } else {
+        alert('Please enter a search term.');
+      }
+    }
+  </script>
 </body>
-
-
-
 </html>

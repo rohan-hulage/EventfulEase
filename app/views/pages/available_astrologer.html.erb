@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>EventfulEase</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= stylesheet_link_tag 'available_astrologer', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= csrf_meta_tags %>
+</head>
+
+<body>
+
+  <!-- ======= Header ======= -->
+  <header id="header" class="fixed-top">
+    <div class="container d-flex align-items-center justify-content-between">
+
+      <h1 class="logo"><a href="index.html">EventfulEase</a></h1>
+
+      <nav id="navbar" class="navbar">
+        <ul>
+          <li><a class="nav-link scrollto active" href="home.html">Home</a></li>
+          <li><a class="nav-link scrollto" href="home.html#about">About</a></li>
+          <li class="dropdown"><a href="home.html#services"><span>Services</span> <i class="bi bi-chevron-down"></i></a>
+            <ul>
+              <li><a href="family_occasions.html">Family Occasions Decoration</a></li>
+              <li><a href="family_occasions.html">Socail Events Decoration</a></li>
+              <li><a href="family_occasions.html">Destination Wedding Decoration</a></li>
+              <li><a href="pandit_ji.html">Book Pandit Ji</a></li>
+              <li><a href="available_astrologer.html">Connect With Astrologer</a></li>
+            </ul>
+          </li>
+          <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
+          <li><a class="nav-link scrollto" href="user_profile">Profile</a></li>
+          <i class="bi bi-list mobile-nav-toggle"></i>
+      </nav><!-- .navbar -->
+
+    </div>
+  </header><!-- End Header -->
+
+
+
+  <!-- ======= Services Section ======= -->
+<section id="services" class="services section-bg">
+  <div class="container">
+
+    <div class="section-title">
+      <h2>Available Astrologer</h2>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
+        <div class="icon-box">
+          <h4><a href="">Astrologer Aarav Gupta</a></h4>
+          <p>A renowned astrologer with a deep understanding of Vedic astrology, Aarav Gupta specializes in providing insightful horoscope readings and personalized consultations.</p>
+          <%= link_to "Chat", payment_astrologer_path(connect_type: 'chat', astrologer_name: 'Astrologer Aarav Gupta'), class: "btn-get-started scrollto" %>
+          <%= link_to "Call", payment_astrologer_path(connect_type: 'call', astrologer_name: 'Astrologer Aarav Gupta'), class: "btn-get-started scrollto" %>
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
+        <div class="icon-box">
+          <h4><a href="">Astrologer Maya Patel</a></h4>
+          <p>Known for her intuitive insights and precise predictions, Maya Patel is a trusted advisor in the realm of astrology. Specializing in various branches of astrology,</p>
+          <%= link_to "Chat", payment_astrologer_path(connect_type: 'chat', astrologer_name: 'Astrologer Maya Patel'), class: "btn-get-started scrollto" %>
+          <%= link_to "Call", payment_astrologer_path(connect_type: 'call', astrologer_name: 'Astrologer Maya Patel'), class: "btn-get-started scrollto" %>
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
+        <div class="icon-box">
+          <h4><a href="">Astrologer Vikram Singh</a></h4>
+          <p>Vikram Singh is an astrologer committed to assisting clients in realizing their fullest potential. His astrological guidance, deeply rooted in ancient wisdom.</p>
+          <%= link_to "Chat", payment_astrologer_path(connect_type: 'chat', astrologer_name: 'Astrologer Vikram Singh'), class: "btn-get-started scrollto" %>
+          <%= link_to "Call", payment_astrologer_path(connect_type: 'call', astrologer_name: 'Astrologer Vikram Singh'), class: "btn-get-started scrollto" %>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section><!-- End Services Section -->
+
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer">
+
+    <div class="container-footer">
+      <div class="copyright">
+        &copy; Copyright <strong><span>Akrity</span></strong>. All Rights Reserved
+      </div>
+      <div class="credits">
+        <p>Made By <a href="https://bootstrapmade.com/">Akrity</a>
+      </div>
+    </div>
+  </footer><!-- End Footer -->
+
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+</body>
+
+</html>

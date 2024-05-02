@@ -7,7 +7,51 @@
   <%= csrf_meta_tags %>
 </head>
 
+
+<body>
+<div class="register-page">
+  <h2>Register Here</h2>
+  <%= form_with(model: Registration.new, local: true) do |form| %>
+
+    <div>
+      <%= form.label :name %>
+      <%= form.text_field :name, required: true %>
+    </div>
+    <div>
+      <%= form.label :email %>
+      <%= form.email_field :email, required: true %>
+    </div>
+    <div>
+      <%= form.label :password %>
+      <%= form.password_field :password, required: true %>
+    </div>
+    <div>
+      <%= form.label :password_confirmation, "Confirm Password" %>
+      <%= form.password_field :password_confirmation, required: true %>
+    </div>
+    <div>
+      <%= form.label :register_as, "Register as:" %>
+      <%= form.select :register_as, [['User', 'user'], ['Vendor', 'vendor']], { include_blank: 'Select' }, required: true, id: "register_as" %>
+    </div>
+
+    <div id="vendor_fields" style="display: none;">
+      <div>
+        <%= form.label :vendor_type, "Vendor Type" %>
+        <%= form.select :vendor_type, [['Decorator', 'decorator'], ['Pandit Ji', 'pandit'], ['Astrologer', 'astrologer']], { include_blank: 'Select' }, required: true %>
+      </div>
+      <div>
+        <%= form.label :expertise, "Expertise" %>
+        <%= form.text_field :expertise %>
+      </div>
+    </div>
+
+    <%= form.submit "Register", class: "register-button", method: :post %>
+  <% end %>
+</div>
+
+
 <script>
+
   document.addEventListener("DOMContentLoaded", function() {
     const passwordField = document.getElementById("registration_password");
     const passwordStrength = document.createElement("div");
@@ -55,52 +99,7 @@
     });
   });
 
-  
-</script>
 
-<body>
-<div class="register-page">
-  <h2>Register Here</h2>
-  <%= form_with(model: Registration.new, local: true) do |form| %>
-
-    <div>
-      <%= form.label :name %>
-      <%= form.text_field :name, required: true %>
-    </div>
-    <div>
-      <%= form.label :email %>
-      <%= form.email_field :email, required: true %>
-    </div>
-    <div>
-      <%= form.label :password %>
-      <%= form.password_field :password, required: true %>
-    </div>
-    <div>
-      <%= form.label :password_confirmation, "Confirm Password" %>
-      <%= form.password_field :password_confirmation, required: true %>
-    </div>
-    <div>
-      <%= form.label :register_as, "Register as:" %>
-      <%= form.select :register_as, [['User', 'user'], ['Vendor', 'vendor']], { include_blank: 'Select' }, required: true, id: "register_as" %>
-    </div>
-
-    <div id="vendor_fields" style="display: none;">
-      <div>
-        <%= form.label :vendor_type, "Vendor Type" %>
-        <%= form.select :vendor_type, [['Decorator', 'decorator'], ['Pandit Ji', 'pandit'], ['Astrologer', 'astrologer']], { include_blank: 'Select' }, required: true %>
-      </div>
-      <div>
-        <%= form.label :expertise, "Expertise" %>
-        <%= form.text_field :expertise %>
-      </div>
-    </div>
-
-    <%= form.submit "Register", class: "register-button", method: :post %>
-  <% end %>
-</div>
-
-
-<script>
   document.addEventListener('DOMContentLoaded', function() {
     const registerAsField = document.getElementById('register_as');
     const vendorFields = document.getElementById('vendor_fields');

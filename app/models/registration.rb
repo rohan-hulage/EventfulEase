@@ -1,6 +1,6 @@
 class Registration < ApplicationRecord
 
-  has_many :bookings, foreign_key: 'booking_for', primary_key: 'name'
+  has_many :bookings, foreign_key: 'email', primary_key: 'email'
 
   before_save { self.email = email.downcase }
 

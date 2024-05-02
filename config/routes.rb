@@ -38,7 +38,7 @@ Rails.application.routes.draw do
 
 
   get '/payments', to: 'pages#payment', as: 'payment'
-  post '/payments', to: 'pages#make_payment', as: 'make_payment'
+  post 'make_payment', to: 'pages#make_payment'
 
   post '/accept_booking/:id', to: 'pages#accept_booking', as: 'accept_booking'
   delete '/reject_booking/:id', to: 'pages#reject_booking', as: 'reject_booking'

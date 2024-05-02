@@ -19,6 +19,8 @@ gem "importmap-rails"
 
 gem "webpacker", "~> 6.0.0.rc.6"
 
+gem "stripe"
+
 
 # Hotwire's SPA-like page accelerator [https://turbo.hotwired.dev]
 gem "turbo-rails"

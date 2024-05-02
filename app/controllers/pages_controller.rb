@@ -31,7 +31,14 @@ class PagesController < ApplicationController
 
   # Pandit Ji
   def pandit_ji
-    @top_pandits = Registration.where(vendor_type: 'pandit').left_joins(:bookings).group(:name).average(:rating).sort_by { |_, v| v }.reverse.first(3)
+    @top_pandits = Registration.where(vendor_type: 'pandit')
+                               .left_joins(:bookings)
+                               .group(:name)
+                               .average(:rating)
+                               .transform_values { |v| v || BigDecimal('0') } # Provide a default value of 0 for nil ratings
+                               .sort_by { |_, v| v }
+                               .reverse
+                               .first(3)
 
     if params[:search].present?
       search_query = params[:search].downcase
@@ -39,19 +46,21 @@ class PagesController < ApplicationController
       @search_results = Registration.where(vendor_type: 'pandit').select do |pandit|
         pandit.name.downcase.include?(search_query) || pandit.expertise.downcase.split(',').any? { |exp| exp.strip.downcase == search_query }
       end.map do |pandit|
-        average_rating = Booking.where(booking_for: pandit.name).average(:rating) || 'Not rated'
+        average_rating = Booking.where(booking_for: pandit.name).average(:rating)
+        average_rating = average_rating.present? ? average_rating : BigDecimal('0') # Handle nil case
         [pandit.name, average_rating]
-      end.sort_by { |_, rating| rating == 'Not rated' ? 0 : -rating.to_f }.first(3)
+      end.sort_by { |_, rating| rating }
+         .reverse
+         .first(3)
     else
       @search_performed = false
 
-      @top_pandits = Registration.where(vendor_type: 'pandit').limit(3).map do |pandit|
-        average_rating = Booking.where(booking_for: pandit.name).average(:rating) || 'Not rated'
-        [pandit.name, average_rating]
-      end
+      @top_pandits = @top_pandits.sort_by { |_, rating| rating }
+                                 .reverse
+                                 .first(3)
     end
-
   end
+
 
   def search_pandit_ji
     @search_performed = true
@@ -151,11 +160,14 @@ class PagesController < ApplicationController
   end
 
   def make_payment
+    # Ensure params[:price] is present and not nil
+    price = params[:price]&.delete('$')&.to_i || 0
+
     @booking = Booking.new(
       theme: params[:theme],
       booking_by: current_account.name,
       booking_for: params[:decoratorName],
-      price: params[:price].delete('$').to_i,
+      price: price,
       email: current_account.email,
       vendor_id: current_account.id
     )
@@ -201,8 +213,5 @@ class PagesController < ApplicationController
       format.json { render json: { booking: @booking } }
     end
   end
-
-
-
 
 end

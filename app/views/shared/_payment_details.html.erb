@@ -35,18 +35,23 @@
 
   <!-- ======= Payment Section ======= -->
   <section id="payment" class="payment">
-    <div class="container">
+    <div class="container ">
       <div class="section-title">
         <h2>Payment Details</h2>
       </div>
       <div class="row">
         <div class="box-parent">
           <div class="box">
-            <h4><strong>Booked For:</strong> <%= @connect_type %></h4>
-            <h4><strong>Astrologer Name:</strong> <%= @astrologer_name %></h4> 
-            <h4><strong>Price:</strong> $500</h4>
+            <% if defined?(vendor_name) %>
+            <h4><strong>Vendor Name:</strong> <%= vendor_name %></h4> 
+            <% elsif defined?(pandit_name) %>
+            <h4><strong>Pandit Ji Name:</strong> <%= pandit_name %></h4>
+            <% elsif defined?(astrologer_name) %>
+            <h4><strong>Astrologer Name:</strong> <%= astrologer_name %></h4>
+            <% end %>
+            <h4><strong>Price:</strong> <%= price %></h4>
             <h4>Select Payment Option:</h4>
-            <div class="pay-buttons">
+            <div class="pay-buttons" >
               <%= link_to "Pay in Cash", "#", id: "cash", class: "btn-get-started scrollto", data: { type: "cash" } %>
               <%= link_to "Pay Online", "#", id: "online", class: "btn-get-started scrollto", data: { type: "online" } %>
             </div>  
@@ -55,8 +60,8 @@
       </div>
       <div class="row parent-parent">
         <div class="after-click" style="display:none;">     
-          <p id="payment_status">Payment is confirmed</p>
-          <button id="connect" class="btn-get-started scrollto" style="display:none;">Connect</button>
+          <p id="payment_status" ></p>
+          <%= link_to "Booking List", user_profile_path, style: "display:none;", id: "bookingList" %>
         </div>
       </div>   
     </div>
@@ -85,17 +90,18 @@
         button.addEventListener("click", function(e) {
           e.preventDefault();
           var type = this.dataset.type;
-          var connectType = "<%= @connect_type %>";
-          var astrologerName = "<%= @astrologer_name %>";
-          var price = "<%= @price %>";
-
           var data = {
-            connect_type: connectType,
-            astrologer_name: astrologerName,
+            <% if defined?(vendor_name) %>
+              vendor_name: "<%= vendor_name %>",
+            <% else %>
+              pandit_name: "<%= pandit_name %>",
+            <% end %>
+            booked_for: "<%= booked_for %>",
+            price: "<%= price %>",
             payment_type: type
           };
 
-          fetch("<%= make_payment_astrologer_path(format: :json) %>", {
+          fetch("<%= make_payment_path(format: :json) %>", {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
@@ -106,27 +112,13 @@
           .then(response => response.json())
           .then(data => {
             document.querySelector(".after-click").style.display = "block";
+            document.getElementById("bookingList").style.display = "block";
             document.getElementById("payment_status").innerText = "Payment is confirmed";
-            document.getElementById("connect").style.display = "block";
           })
           .catch((error) => {
             console.error("Error:", error);
           });
         });
-      });
-
-      document.getElementById("connect").addEventListener("click", function(e) {
-        var astrologerName = "<%= @astrologer_name %>";
-
-        var phoneNumbers = {
-          "Astrologer Aarav Gupta": "9359717399",
-          "Astrologer Maya Patel": "9890082434",
-          "Astrologer Vikram Singh": "8390165026"
-        };
-
-        var phoneNumber = phoneNumbers[astrologerName];
-
-        window.location.href = "https://wa.me/" + phoneNumber;
       });
     });
   </script>

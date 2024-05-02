@@ -139,6 +139,7 @@
                     </thead>
                     <tbody>
                       <% @bookings.each do |booking| %>
+                      <% registration = Registration.find_by(name: booking.booking_for) %>
                         <tr>
                           <td><%= booking.theme %></td>
                           <td><%= booking.booking_for %></td>
